@@ -45,6 +45,9 @@
             <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="submit" name="viewAllTables" id="viewAllTables">View all
                 Tables</button>
+                <!-- Q1 -->
+            <button class="btn btn-outline-secondary" type="submit" name="listAllTables" id="listAllTables">List all
+                Tables</button>
             </div>
 
             <!-- Motion Pictures -->
@@ -268,6 +271,25 @@
                         echo "0 results<br><br>";
                     }
                 }
+                // Q1
+            } else if (isset ($_POST['listAllTables'])) {
+                $stmt = $conn->query("SHOW TABLES");
+                echo "<h1>Tables</h1>";
+                echo "<table class='table table-bordered'>
+                        <thead class='thead-dark'>
+                            <tr>
+                                <th>Table Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+
+                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+                    echo "<tr>
+                            <td>{$row[0]}</td>
+                        </tr>";
+                }
+
+                echo "</tbody></table>";
             } else if (isset ($_POST['viewAllMovies'])) {
                 // $mLimit = $_POST["mBy"] ?: 0;
                 $query = "
