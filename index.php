@@ -63,8 +63,13 @@
                 </label>
                 <!-- Q4 -->
                 <input class="form-check-input" type="checkbox" name="mpByLoc" id="mpByLoc">
-                <label class="form-check-label" for="mpByLoc">
+                <label class="form-check-label" for="mpByLoc" style="margin-right: 30px;">
                     shooting location (country)
+                </label>
+                <!-- Q13 -->
+                <input class="form-check-input" type="checkbox" name="mpByHighCom" id="mpByHighCom">
+                <label class="form-check-label" for="mpByHighCom" style="margin-right: 30px;">
+                    high rated than comedy
                 </label>
             </div>
 
@@ -94,6 +99,11 @@
                 <input class="form-check-input" type="checkbox" name="mByAgeLike" id="mByAgeLike">
                 <label class="form-check-label" for="mByAgeLike" style="margin-right: 30px;">
                     X+ likes by Y- ages
+                </label>
+                <!-- Q14 -->
+                <input class="form-check-input" type="checkbox" name="mByTop5" id="mByTop5">
+                <label class="form-check-label" for="mByTop5" style="margin-right: 30px;">
+                    top 5 people count
                 </label>
             </div>
 
@@ -151,12 +161,17 @@
                 <label class="form-check-label" for="pByMW" style="margin-right: 30px;">
                     Marvel & Warner Bros actors
                 </label>
+                <!-- Q15 -->
+                <input class="form-check-input" type="checkbox" name="pBySameDob" id="pBySameDob">
+                <label class="form-check-label" for="pBySameDob" style="margin-right: 30px;">
+                    same birthday actors
+                </label>
             </div>
 
 
             <button class="btn btn-outline-secondary" type="submit" name="viewAllActors" id="viewAllActors">View all
                 actors</button>
-            <div class="form-check mb-3">
+            <!-- <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" name="bornIn60s" id="bornIn60s">
                 <label class="form-check-label" for="bornIn60s">
                     Born in the 60s
@@ -167,7 +182,7 @@
                 <label class="form-check-label" for="groupById">
                     Group By Id
                 </label>
-            </div>
+            </div> -->
         </form>
     </div>
     <div class="container">
@@ -284,6 +299,7 @@
                             <th>Rating</th>
                             <th>Production</th>
                             <th>Budget</th>
+                            <th>Like</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -294,6 +310,13 @@
                         <td>{$row['rating']}</td>
                         <td>{$row['production']}</td>
                         <td>{$row['budget']}</td>
+                        <td>
+                            <form onsubmit='return promptEmail(this);' method='post'>
+                                <input type='hidden' name='mpid' value='{$row['id']}'>
+                                <input type='hidden' name='email' value=''> 
+                                <button type='submit' name='likeMovie'>Like</button>
+                            </form>
+                        </td>
                     </tr>";
                     }
 
@@ -325,6 +348,7 @@
                         <tr>
                             <th>Movie Name</th>
                             <th>Rating</th>
+                            <th>Like</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -332,6 +356,13 @@
                         echo "<tr>
                         <td>{$row['movie_name']}</td>
                         <td>{$row['rating']}</td>
+                        <td>
+                            <form onsubmit='return promptEmail(this);' method='post'>
+                                <input type='hidden' name='mpid' value='{$row['id']}'>
+                                <input type='hidden' name='email' value=''> 
+                                <button type='submit' name='likeMovie'>Like</button>
+                            </form>
+                        </td>
                     </tr>";
                     }
 
@@ -356,6 +387,7 @@
                         <tr>
                             <th>Movie Name</th>
                             <th>Like Count</th>
+                            <th>Like</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -363,6 +395,53 @@
                         echo "<tr>
                         <td>{$row['name']}</td>
                         <td>{$row['count_like']}</td>
+                        <td>
+                            <form onsubmit='return promptEmail(this);' method='post'>
+                                <input type='hidden' name='mpid' value='{$row['id']}'>
+                                <input type='hidden' name='email' value=''> 
+                                <button type='submit' name='likeMovie'>Like</button>
+                            </form>
+                        </td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q14
+                } else if (isset ($_POST["mByTop5"])) {
+                    $query = "
+                        SELECT mp.name, COUNT(DISTINCT r.pid) AS people_count, COUNT(r.role_name) AS role_count
+                        FROM Role r
+                        JOIN Movie m ON r.mpid = m.mpid
+                        JOIN MotionPicture mp ON r.mpid = mp.id
+                        GROUP BY mp.id, mp.name
+                        ORDER BY people_count DESC, role_count DESC
+                        LIMIT 5
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Movies</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Movie Name</th>
+                            <th>People Count</th>
+                            <th>Role Count</th>
+                            <th>Like</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                        <td>{$row['people_count']}</td>
+                        <td>{$row['role_count']}</td>
+                        <td>
+                            <form onsubmit='return promptEmail(this);' method='post'>
+                                <input type='hidden' name='mpid' value='{$row['id']}'>
+                                <input type='hidden' name='email' value=''> 
+                                <button type='submit' name='likeMovie'>Like</button>
+                            </form>
+                        </td>
                     </tr>";
                     }
 
@@ -515,6 +594,40 @@
                     foreach ($stmt as $row) {
                         echo "<tr>
                         <td>{$row['name']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+
+                    // Q13
+                } else if (isset ($_POST['mpByHighCom'])) {
+                    $query = "
+                        SELECT name, rating
+                        FROM MotionPicture
+                        WHERE rating > (
+                            SELECT AVG(rating)
+                            FROM MotionPicture mp
+                            JOIN Genre g ON mp.id = g.mpid
+                            WHERE g.genre_name = 'comedy'
+                        )
+                        ORDER BY rating DESC;
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Better Than Comedy</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Name</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                        <td>{$row['rating']}</td>
                     </tr>";
                     }
 
@@ -780,13 +893,38 @@
                     }
 
                     echo "</tbody></table>";
+                } else if (isset ($_POST["pBySameDob"])) {
+                    $query = "
+                        SELECT DISTINCT p1.name AS actor1_name, p2.name AS actor2_name, p1.dob
+                        FROM Role r1
+                        JOIN Role r2 ON r1.pid < r2.pid
+                        JOIN People p1 ON r1.pid = p1.id
+                        JOIN People p2 ON r2.pid = p2.id AND p1.dob = p2.dob
+                        WHERE r1.role_name = 'Actor' AND r2.role_name = 'Actor';
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Same Birthday Actors</h1>";
+                    echo "<table class='table table-bordered'>
+                            <thead class='thead-dark'>
+                                <tr>
+                                    <th>Actor1 Name</th>
+                                    <th>Actor2 Name</th>
+                                    <th>DOB</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                                <td>{$row['actor1_name']}</td>
+                                <td>{$row['actor2_name']}</td>
+                                <td>{$row['dob']}</td>
+                            </tr>";
+                    }
+
+                    echo "</tbody></table>";
                 }
-
             }
-
-
-
-
 
             if (isset ($_POST['likeMovie'])) {
                 $mpid = $_POST['mpid'];
