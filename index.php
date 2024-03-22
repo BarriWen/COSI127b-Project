@@ -46,28 +46,139 @@
             <button class="btn btn-outline-secondary" type="submit" name="viewAllTables" id="viewAllTables">View all
                 Tables</button>
             </div>
+
+            <!-- Motion Pictures -->
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Enter minimum rating" name="inputRating"
-                    id="inputRating">
+                <input type="text" class="form-control" placeholder="Search by..." name="mpBy"
+                    id="mpBy">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit" name="viewAllMovies" id="viewAllMovies">View
-                        all movies</button>
+                    <button class="btn btn-outline-secondary" type="submit" name="searchMp" id="searchMp">Search Motion Pictures</button>
                 </div>
             </div>
+            <div class="form-check mb-3">
+                <!-- Q2 -->
+                <input class="form-check-input" type="checkbox" name="mpByName" id="mpByName">
+                <label class="form-check-label" for="mpByName" style="margin-right: 30px;">
+                    name
+                </label>
+                <!-- Q4 -->
+                <input class="form-check-input" type="checkbox" name="mpByLoc" id="mpByLoc">
+                <label class="form-check-label" for="mpByLoc">
+                    shooting location (country)
+                </label>
+            </div>
+
+            <!-- Movies -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search by...(X)" name="mBy"
+                    id="mBy">
+                    <input type="text" class="form-control" placeholder="Y..." name="mBy1"
+                    id="mBy1">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" name="viewAllMovies" id="viewAllMovies">Search Movies</button>
+                </div>
+            </div>
+            
+            <div class="form-check mb-3">
+                <!-- Q3 -->
+                <input class="form-check-input" type="checkbox" name="mByEmail" id="mByEmail">
+                <label class="form-check-label" for="mByEmail" style="margin-right: 30px;">
+                    user likes (email)
+                </label>
+                <!-- Q10 -->
+                <input class="form-check-input" type="checkbox" name="mByTop2T" id="mByTop2T">
+                <label class="form-check-label" for="mByTop2T" style="margin-right: 30px;">
+                    boston top 2 thriller
+                </label>
+                <!-- Q11 -->
+                <input class="form-check-input" type="checkbox" name="mByAgeLike" id="mByAgeLike">
+                <label class="form-check-label" for="mByAgeLike" style="margin-right: 30px;">
+                    X+ likes by Y- ages
+                </label>
+            </div>
+
+            <!-- People -->
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search by (X)..." name="pBy"
+                    id="pBy">
+                    <input type="text" class="form-control" placeholder="Y..." name="pBy1"
+                    id="pBy1">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" name="searchPeople" id="searchPeople">Search People</button>
+                </div>
+            </div>
+            <!-- Select Roles -->
+            <!-- <label class="role-label">
+                    Role:
+            </label> -->
+            <div class="form-check mb-3">
+                <!-- Q5 -->
+                <input class="form-check-input" type="checkbox" name="pDir" id="pDir">
+                <label class="form-check-label" for="pDir">
+                    director
+                </label>
+            </div>
+            <div class="form-check mb-3">
+                <!-- Q5 -->
+                <input class="form-check-input" type="checkbox" name="pByZip" id="pByZip">
+                <label class="form-check-label" for="pByZip" style="margin-right: 30px;">
+                    zip code
+                </label>
+                <!-- Q6 -->
+                <input class="form-check-input" type="checkbox" name="pByAwardNum" id="pByAwardNum">
+                <label class="form-check-label" for="pByAwardNum" style="margin-right: 30px;">
+                    awards number
+                </label>
+                <!-- Q7 -->
+                <input class="form-check-input" type="checkbox" name="pByYoungOld" id="pByYoungOld">
+                <label class="form-check-label" for="pByYoungOld" style="margin-right: 30px;">
+                    awarded youngest and oldest actors
+                </label>
+                <!-- Q8 -->
+                <input class="form-check-input" type="checkbox" name="pByProdC" id="pByProdC">
+                <label class="form-check-label" for="pByProdC" style="margin-right: 30px;">
+                    U.S. producers with X(+) collection and Y(-) budget
+                </label>
+            </div>
+            <div class="form-check mb-3"> 
+                <!-- Q9 -->
+                <input class="form-check-input" type="checkbox" name="pByMultiRole" id="pByMultiRole">
+                <label class="form-check-label" for="pByMultiRole" style="margin-right: 30px;">
+                    multi-roled in one X+ rating
+                </label>
+                <!-- Q12 -->
+                <input class="form-check-input" type="checkbox" name="pByMW" id="pByMW">
+                <label class="form-check-label" for="pByMW" style="margin-right: 30px;">
+                    Marvel & Warner Bros actors
+                </label>
+            </div>
+
+
             <button class="btn btn-outline-secondary" type="submit" name="viewAllActors" id="viewAllActors">View all
                 actors</button>
-        </form>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="bornIn60s" id="bornIn60s">
+                <label class="form-check-label" for="bornIn60s">
+                    Born in the 60s
+                </label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="groupById" id="groupById">
+                <label class="form-check-label" for="groupById">
+                    Group By Id
+                </label>
+            </div>
         </form>
     </div>
     <div class="container">
         <?php
         // we want to check if the submit button has been clicked (in our case, it is named Query)
-        if (isset($_POST['viewAllMovies'])) {
-            $ratingLimit = $_POST["inputRating"];
-        } else {
-            $ratingLimit = 0;
-        }
-
+        // if (isset ($_POST['viewAllMovies'])) {
+        //     $mLimit = $_POST["mBy"];
+        // } else {
+        //     $mLimit = 0;
+        // }
+        
         // generic table builder. It will automatically build table data rows irrespective of result
         class TableRows extends RecursiveIteratorIterator
         {
@@ -103,21 +214,21 @@
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            if (isset($_POST['viewAllTables'])) {
+            if (isset ($_POST['viewAllTables'])) {
                 $stmt = $conn->query("SHOW TABLES");
                 $tables = $stmt->fetchAll(PDO::FETCH_NUM);
                 foreach ($tables as $table) {
                     echo "<h1>$table[0]</h1>";
                     $stmt2 = $conn->prepare("SELECT * FROM " . $table[0]);
                     $stmt2->execute();
-            
+
                     // Get Column
                     $columns = array();
                     for ($i = 0; $i < $stmt2->columnCount(); $i++) {
                         $col = $stmt2->getColumnMeta($i);
                         $columns[] = $col['name'];
                     }
-            
+
                     // Check if there's any data
                     if ($stmt2->rowCount() > 0) {
                         // Print Column Name
@@ -128,7 +239,7 @@
                             echo "<th>$column</th>";
                         }
                         echo "</tr></thead>";
-            
+
                         // Print Row Name
                         while ($rowData = $stmt2->fetch(PDO::FETCH_ASSOC)) {
                             echo "<tr>";
@@ -142,18 +253,126 @@
                         echo "0 results<br><br>";
                     }
                 }
-            } else if (isset($_POST['viewAllMovies'])) {
-                $ratingLimit = $_POST["inputRating"] ?: 0;
-                $stmt = $conn->prepare("
+            } else if (isset ($_POST['viewAllMovies'])) {
+                // $mLimit = $_POST["mBy"] ?: 0;
+                $query = "
                     SELECT mp.id, mp.name, mp.rating, mp.production, mp.budget, m.boxoffice_collection
                     FROM Movie m
                     JOIN MotionPicture mp ON m.mpid = mp.id
-                    WHERE mp.rating >= :ratingLimit
-                ");
-                $stmt->execute(['ratingLimit' => $ratingLimit]);
+                ";
+                // $stmt->execute(['ratingLimit' => $mLimit]);
+                $mLimit = $_POST["mBy"];
+                $mLimit1 = $_POST["mBy1"];
 
-                echo "<h1>Movies</h1>";
-                echo "<table class='table table-bordered'>
+                if (isset ($_POST['mByEmail'])) {
+                    $query = "
+                        SELECT name, rating, production, budget
+                        FROM MotionPicture
+                        WHERE id IN (SELECT mpid
+                        FROM Movie
+                        WHERE mpid in (SELECT mpid
+                                        FROM Likes
+                                        WHERE uemail = '$mLimit'))
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Movies</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>Production</th>
+                            <th>Budget</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                        <td>{$row['rating']}</td>
+                        <td>{$row['production']}</td>
+                        <td>{$row['budget']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q10
+                } else if (isset ($_POST["mByTop2T"])) {
+                    $query = "
+                        SELECT mp.name AS movie_name, mp.rating
+                        FROM Movie m
+                        JOIN MotionPicture mp ON m.mpid = mp.id
+                        JOIN Genre g ON m.mpid = g.mpid
+                        JOIN Location l ON m.mpid = l.mpid
+                        WHERE g.genre_name = 'Thriller'
+                        AND l.city = 'Boston'
+                        AND NOT EXISTS (
+                            SELECT 1
+                            FROM Location
+                            WHERE mpid = m.mpid
+                            AND city != 'Boston'
+                        )
+                        ORDER BY mp.rating DESC
+                        LIMIT 2;
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Top 2 Thriller</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Movie Name</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['movie_name']}</td>
+                        <td>{$row['rating']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q11
+                } else if (isset ($_POST["mByAgeLike"])) {
+                    $query = "
+                        SELECT mp.name, COUNT(l.uemail) AS count_like
+                        FROM Likes l
+                        RIGHT JOIN Movie m ON l.mpid = m.mpid
+                        LEFT JOIN MotionPicture mp ON m.mpid = mp.id
+                        LEFT JOIN User u on l.uemail = u.email
+                        WHERE u.age < '$mLimit1'
+                        GROUP BY mp.name
+                        HAVING count_like > '$mLimit';
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Movies likes by age group</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Movie Name</th>
+                            <th>Like Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                        <td>{$row['count_like']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                } else {
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+
+                    echo "<h1>Movies</h1>";
+                    echo "<table class='table table-bordered'>
                     <thead class='thead-dark'>
                         <tr>
                             <th>ID</th>
@@ -167,8 +386,8 @@
                     </thead>
                     <tbody>";
 
-                foreach ($stmt as $row) {
-                    echo "<tr>
+                    foreach ($stmt as $row) {
+                        echo "<tr>
                         <td>{$row['id']}</td>
                         <td>{$row['name']}</td>
                         <td>{$row['rating']}</td>
@@ -183,22 +402,24 @@
                             </form>
                         </td>
                     </tr>";
+                    }
+
+                    echo "</tbody></table>";
                 }
 
-                echo "</tbody></table>";
-            } elseif (isset($_POST['viewAllActors'])) {
+            } elseif (isset ($_POST['viewAllActors'])) {
                 $query = "
                     SELECT p.id, p.name, p.nationality, p.dob, p.gender, r.role_name
                     FROM People p
                     JOIN Role r ON p.id = r.pid
                     WHERE (r.role_name = 'Actor' OR r.role_name = 'Actress')
                 ";
-                if (isset($_POST['bornIn60s'])) {
+                if (isset ($_POST['bornIn60s'])) {
                     // Append the condition for actors born between 1960 and 1969
                     $query .= " AND p.dob BETWEEN '1960-01-01' AND '1969-12-31'";
                 }
 
-                if (isset($_POST['groupById'])) {
+                if (isset ($_POST['groupById'])) {
                     // Append the condition for GROUP BY p.id
                     $query .= " GROUP BY p.id";
                 }
@@ -233,9 +454,341 @@
 
                 echo "</tbody></table>";
 
+            } else if (isset ($_POST['searchMp'])) {
+                $query = "
+                    SELECT *
+                    FROM MotionPicture mp
+                ";
+                $mpLimit = $_POST["mpBy"];
+                // Q2
+                if (isset ($_POST['mpByName'])) {
+                    $query = "
+                        Select name, rating, production, budget
+                        From MotionPicture
+                        Where LOWER(name) LIKE LOWER('%" . $mpLimit . "%');
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+
+                    echo "<h1>Motion Pictures</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>Production</th>
+                            <th>Budget</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                        <td>{$row['rating']}</td>
+                        <td>{$row['production']}</td>
+                        <td>{$row['budget']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q4
+                } else if (isset ($_POST['mpByLoc'])) {
+                    $query = "
+                        SELECT DISTINCT name
+                        from MotionPicture
+                        WHERE id IN (SELECT mpid
+                                    FROM Location
+                                    WHERE LOWER(Country) LIKE LOWER('$mpLimit'))
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Motion Pictures</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                } else {
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+
+                    echo "<h1>Motion Pictures</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>Production</th>
+                            <th>Budget</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['id']}</td>
+                        <td>{$row['name']}</td>
+                        <td>{$row['rating']}</td>
+                        <td>{$row['production']}</td>
+                        <td>{$row['budget']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+
+                }
+            } else if (isset ($_POST['searchPeople'])) {
+                $query = "
+                    SELECT *
+                    FROM People
+                ";
+                $pLimit = $_POST["pBy"];
+                $pLimit1 = $_POST["pBy1"];
+                // Q5
+                if (isset ($_POST["pDir"]) && isset ($_POST["pByZip"])) {
+                    $query = "
+                        SELECT DISTINCT People.name AS director_name, MotionPicture.name AS tv_series_name
+                        FROM People
+                        JOIN Role ON People.id = Role.pid
+                        JOIN Location ON Role.mpid = Location.mpid
+                        JOIN MotionPicture ON Location.mpid = MotionPicture.id
+                        WHERE Location.zip = '$pLimit'
+                        AND Role.role_name = 'Director'
+                        AND Location.mpid IN (
+                            SELECT mpid
+                            FROM Series
+                        );
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Directors</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Director Name</th>
+                            <th>TV Series Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['director_name']}</td>
+                        <td>{$row['tv_series_name']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q6
+                } else if (isset ($_POST["pByAwardNum"])) {
+                    $query = "
+                        SELECT 
+                            mp.name AS movie_name, 
+                            p.name AS person_name, 
+                            a.award_year AS award_year,
+                            COUNT(a.award_name) AS award_count
+                        FROM 
+                            Award a
+                        INNER JOIN 
+                            MotionPicture mp ON a.mpid = mp.id
+                        INNER JOIN 
+                            People p ON a.pid = p.id
+                        GROUP BY 
+                            mp.id, p.id, a.award_year
+                        HAVING 
+                            award_count > '$pLimit';
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>People with k+ Awards</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>People Name</th>
+                            <th>Motion Picture Name</th>
+                            <th>Award Year</th>
+                            <th>Award Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['person_name']}</td>
+                        <td>{$row['movie_name']}</td>
+                        <td>{$row['award_year']}</td>
+                        <td>{$row['award_count']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q7
+                } else if (isset ($_POST["pByYoungOld"])) {
+                    $query = "
+                        SELECT p.name, TIMESTAMPDIFF(YEAR, p.dob, STR_TO_DATE(CONCAT(a.award_year, '-01-01'), '%Y-%m-%d')) AS age_win
+                        FROM People p
+                        RIGHT JOIN Award a ON p.id = a.pid
+                        JOIN Role r ON a.pid = r.pid
+                        WHERE r.role_name = 'actor'
+                        HAVING age_win = (
+                            SELECT MAX(TIMESTAMPDIFF(YEAR, p.dob, STR_TO_DATE(CONCAT(a.award_year, '-01-01'), '%Y-%m-%d')))
+                            FROM People p
+                            RIGHT JOIN Award a ON p.id = a.pid
+                            JOIN Role r ON a.pid = r.pid
+                            WHERE r.role_name = 'actor'
+                        )
+
+                        UNION ALL
+
+                        SELECT p.name, TIMESTAMPDIFF(YEAR, p.dob, STR_TO_DATE(CONCAT(a.award_year, '-01-01'), '%Y-%m-%d')) AS age_win
+                        FROM People p
+                        RIGHT JOIN Award a ON p.id = a.pid
+                        JOIN Role r ON a.pid = r.pid
+                        WHERE r.role_name = 'actor'
+                        HAVING age_win = (
+                            SELECT MIN(TIMESTAMPDIFF(YEAR, p.dob, STR_TO_DATE(CONCAT(a.award_year, '-01-01'), '%Y-%m-%d')))
+                            FROM People p
+                            RIGHT JOIN Award a ON p.id = a.pid
+                            JOIN Role r ON a.pid = r.pid
+                            WHERE r.role_name = 'actor'
+                        );
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Youngest & Oldest Awarded Actors</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name']}</td>
+                        <td>{$row['age_win']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q8
+                } else if (isset ($_POST["pByProdC"])) {
+                    $query = "
+                        SELECT p.name AS producer_name, mp.name AS movie_name, m.boxoffice_collection, mp.budget
+                        FROM People p
+                        JOIN Role r ON p.id = r.pid AND r.role_name = 'Producer'
+                        JOIN Movie m ON r.mpid = m.mpid
+                        JOIN MotionPicture mp ON m.mpid = mp.id
+                        WHERE m.boxoffice_collection >= '$pLimit'
+                            AND mp.budget <= '$pLimit1'
+                            AND p.nationality = 'USA';
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Directors</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Producer Name</th>
+                            <th>Movie Name</th>
+                            <th>Box Office</th>
+                            <th>Budget</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['producer_name']}</td>
+                        <td>{$row['movie_name']}</td>
+                        <td>{$row['boxoffice_collection']}</td>
+                        <td>{$row['budget']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q9
+                } else if (isset ($_POST["pByMultiRole"])) {
+                    $query = "
+                        SELECT p.name AS name1, mp.name AS name2, COUNT(role_name) AS role_count
+                        FROM Role
+                        LEFT JOIN People p on Role.pid = p.id
+                        LEFT JOIN MotionPicture mp on Role.mpid = mp.id
+                        WHERE mp.rating > '$pLimit'
+                        GROUP BY mpid, pid
+                        HAVING role_count > 1
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Multi-roled</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Producer Name</th>
+                            <th>Motion Picture Name</th>
+                            <th>Role Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['name1']}</td>
+                        <td>{$row['name2']}</td>
+                        <td>{$row['role_count']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                    // Q12
+                } else if (isset ($_POST["pByMW"])) {
+                    $query = "
+                        SELECT DISTINCT p.name AS ActorName, mp1.name AS MarvelProduction, mp2.name AS WarnerBrosProduction
+                        FROM Role r1
+                        JOIN MotionPicture mp1 ON r1.mpid = mp1.id AND mp1.production = 'Marvel' AND r1.role_name = 'Actor'
+                        JOIN Role r2 ON r1.pid = r2.pid AND r2.role_name = 'Actor'
+                        JOIN MotionPicture mp2 ON r2.mpid = mp2.id AND mp2.production = 'Warner Bros'
+                        JOIN People p ON r1.pid = p.id;
+                    ";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute();
+                    echo "<h1>Multi-roled</h1>";
+                    echo "<table class='table table-bordered'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Actor Name</th>
+                            <th>Marvel Production</th>
+                            <th>Warner BrosProduction</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+                    foreach ($stmt as $row) {
+                        echo "<tr>
+                        <td>{$row['ActorName']}</td>
+                        <td>{$row['MarvelProduction']}</td>
+                        <td>{$row['WarnerBrosProduction']}</td>
+                    </tr>";
+                    }
+
+                    echo "</tbody></table>";
+                }
+
             }
 
-            if (isset($_POST['likeMovie'])) {
+
+
+
+
+            if (isset ($_POST['likeMovie'])) {
                 $mpid = $_POST['mpid'];
                 $email = trim($_POST['email']);
 
